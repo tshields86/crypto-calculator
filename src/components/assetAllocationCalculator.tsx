@@ -22,7 +22,8 @@ export default function AssetAllocationCalculator({
   const isNegativeInvestmentAmount = Number(investmentAmount) < 0
 
   const totalAllocationAmount = [...allocationByCrypto]
-    .reduce((sum, [, allocationAmount]) => sum + Number(allocationAmount), 0)
+    .reduce((sum, [, allocationAmount]) => sum + (Number(allocationAmount) || 0), 0)
+  console.log({ totalAllocationAmount })
 
   const investmentAmountInput = (
     <>
