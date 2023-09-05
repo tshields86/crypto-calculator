@@ -69,25 +69,25 @@ export default function AssetAllocationCalculator({
       </div>
       <Table>
         <Table.Head>
-          <Table.HeadCell className="w-1/6">
+          <Table.HeadCell className="w-1/8">
             Symbol
           </Table.HeadCell>
-          <Table.HeadCell className="w-2/6">
-            Allocation
+          <Table.HeadCell className="w-3/8">
+            Allocation % ({totalAllocationAmount}/{TOTAL_ALLOCATION_AMOUNT})
           </Table.HeadCell>
-          <Table.HeadCell className="w-2/6">
+          <Table.HeadCell className="w-3/8">
             Number of Shares
           </Table.HeadCell>
-          <Table.HeadCell className="w-1/6">
+          <Table.HeadCell className="w-1/8">
             Remove
           </Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
           {[...allocationByCrypto].map(([symbol, allocationAmount]) => {
             const negativeAllocationText = Number(allocationAmount) < 0
-              && <>Can't be a negative allocation!</>
+              && <>Can't be negative</>
             const totalAllocationText = totalAllocationAmount > TOTAL_ALLOCATION_AMOUNT
-              && <>Total can't be greater than 100!</>
+              && <>Total can't be greater than 100%</>
             const shares = Number(investmentAmount) * (Number(allocationAmount) / TOTAL_ALLOCATION_AMOUNT) * Number(rates?.[symbol])
               || ''
 
