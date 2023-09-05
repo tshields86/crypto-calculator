@@ -1,0 +1,30 @@
+export const TOP_CRYPTO_CURRENCIES = [
+  ['ADA', 'Cardano'],
+  ['ATOM', 'Cosmos'],
+  ['AVAX', 'Avalanche'],
+  ['BCH', 'Bitcoin Cash'],
+  ['BTC', 'Bitcoin'],
+  ['DAI', 'Dai'],
+  ['DOGE', 'Dogecoin'],
+  ['DOT', 'Polkadot'],
+  ['ETH', 'Ethereum'],
+  ['LINK', 'Chainlink'],
+  ['LTC', 'Litecoin'],
+  ['MATIC', 'Polygon'],
+  ['SHIB', 'SHIBA INU'],
+  ['SOL', 'Solana'],
+  ['UNI', 'Uniswap'],
+  ['USDC', 'USD Coin'],
+  ['USDT', 'Tether'],
+  ['WBTC', 'Wrapped Bitcoin'],
+  ['XLM', 'Stellar'],
+  ['XRP', 'XRP'],
+]
+
+export const TOP_FIAT_CURRENCIES = [
+  ['AUD', 'Australian Dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'British Pound Sterling'],
+  ['JPY', 'Japanese Yen'],
+  ['USD', 'United States Dollar'],
+]
