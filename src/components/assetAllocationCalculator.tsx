@@ -66,94 +66,92 @@ export default function AssetAllocationCalculator({
         {investmentAmountInput}
         {addCryptoButton}
       </div>
-      <div className="relative overflow-x-auto">
-        <Table>
-          <Table.Head>
-            <Table.HeadCell className="w-1/8">
-              Symbol
-            </Table.HeadCell>
-            <Table.HeadCell className="w-3/8">
-              Allocation % ({totalAllocationAmount}/{TOTAL_ALLOCATION_AMOUNT})
-            </Table.HeadCell>
-            <Table.HeadCell className="w-3/8">
-              Number of Shares
-            </Table.HeadCell>
-            <Table.HeadCell className="w-1/8">
-              Remove
-            </Table.HeadCell>
-          </Table.Head>
-          <Table.Body className="divide-y">
-            {[...allocationByCrypto].map(([symbol, allocationAmount]) => {
-              const negativeAllocationText = Number(allocationAmount) < 0
-                && <>Can't be negative</>
-              const totalAllocationText = totalAllocationAmount > TOTAL_ALLOCATION_AMOUNT
-                && <>Total can't be greater than 100%</>
-              const shares = Number(investmentAmount) * (Number(allocationAmount) / TOTAL_ALLOCATION_AMOUNT) * Number(rates?.[symbol])
-                || ''
+      <Table className="min-w-max">
+        <Table.Head>
+          <Table.HeadCell className="w-1/8">
+            Symbol
+          </Table.HeadCell>
+          <Table.HeadCell className="w-3/8">
+            Allocation % ({totalAllocationAmount}/{TOTAL_ALLOCATION_AMOUNT})
+          </Table.HeadCell>
+          <Table.HeadCell className="w-3/8">
+            Number of Shares
+          </Table.HeadCell>
+          <Table.HeadCell className="w-1/8">
+            Remove
+          </Table.HeadCell>
+        </Table.Head>
+        <Table.Body className="divide-y">
+          {[...allocationByCrypto].map(([symbol, allocationAmount]) => {
+            const negativeAllocationText = Number(allocationAmount) < 0
+              && <>Can't be negative</>
+            const totalAllocationText = totalAllocationAmount > TOTAL_ALLOCATION_AMOUNT
+              && <>Total can't be greater than 100%</>
+            const shares = Number(investmentAmount) * (Number(allocationAmount) / TOTAL_ALLOCATION_AMOUNT) * Number(rates?.[symbol])
+              || ''
 
-              return (
-                <Table.Row
-                  className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                  key={`allocation-${symbol}`}
-                >
-                  <Table.Cell>
-                    <Dropdown
-                      className="h-52 overflow-y-auto"
-                      inline
-                      label={symbol}
-                    >
-                      {TOP_CRYPTO_CURRENCIES.map(([dropdownSymbol, name]) => (
-                        <Dropdown.Item
-                          key={`crypto-${dropdownSymbol}`}
-                          onClick={() => setAllocationByCrypto((prev: AllocationByCrypto) => {
-                            const map = new Map(prev)
-                            const allocationAmount = map.get(symbol)
-                            map.delete(symbol)
-                            map.set(dropdownSymbol, allocationAmount)
-                            return map
-                          })}
-                        >
-                          {name}
-                        </Dropdown.Item>
-                      ))}
-                    </Dropdown>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <TextInput
-                      onChange={({ target }) => setAllocationByCrypto((prev: AllocationByCrypto) => {
-                        const map = new Map(prev)
-                        map.set(symbol, Number(target.value) || undefined)
-                        return map
-                      })}
-                      sizing="sm"
-                      type="number"
-                      value={allocationAmount}
-                      {...(negativeAllocationText || totalAllocationText) && { color: 'failure' }}
-                      helperText={negativeAllocationText || totalAllocationText}
-                    />
-                  </Table.Cell>
-                  <Table.Cell>
-                    {shares}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Button
-                      color="light"
-                      onClick={() => setAllocationByCrypto((prev: AllocationByCrypto) => {
-                        const map = new Map(prev)
-                        map.delete(symbol)
-                        return map
-                      })}
-                      size="xs"
-                    >
-                      -
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              )
-            })}
-          </Table.Body>
-        </Table>
-      </div>
+            return (
+              <Table.Row
+                className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                key={`allocation-${symbol}`}
+              >
+                <Table.Cell>
+                  <Dropdown
+                    className="h-52 overflow-y-auto"
+                    inline
+                    label={symbol}
+                  >
+                    {TOP_CRYPTO_CURRENCIES.map(([dropdownSymbol, name]) => (
+                      <Dropdown.Item
+                        key={`crypto-${dropdownSymbol}`}
+                        onClick={() => setAllocationByCrypto((prev: AllocationByCrypto) => {
+                          const map = new Map(prev)
+                          const allocationAmount = map.get(symbol)
+                          map.delete(symbol)
+                          map.set(dropdownSymbol, allocationAmount)
+                          return map
+                        })}
+                      >
+                        {name}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown>
+                </Table.Cell>
+                <Table.Cell>
+                  <TextInput
+                    onChange={({ target }) => setAllocationByCrypto((prev: AllocationByCrypto) => {
+                      const map = new Map(prev)
+                      map.set(symbol, Number(target.value) || undefined)
+                      return map
+                    })}
+                    sizing="sm"
+                    type="number"
+                    value={allocationAmount}
+                    {...(negativeAllocationText || totalAllocationText) && { color: 'failure' }}
+                    helperText={negativeAllocationText || totalAllocationText}
+                  />
+                </Table.Cell>
+                <Table.Cell>
+                  {shares}
+                </Table.Cell>
+                <Table.Cell>
+                  <Button
+                    color="light"
+                    onClick={() => setAllocationByCrypto((prev: AllocationByCrypto) => {
+                      const map = new Map(prev)
+                      map.delete(symbol)
+                      return map
+                    })}
+                    size="xs"
+                  >
+                    -
+                  </Button>
+                </Table.Cell>
+              </Table.Row>
+            )
+          })}
+        </Table.Body>
+      </Table>
     </>
   )
 }
