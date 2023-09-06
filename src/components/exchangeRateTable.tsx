@@ -12,37 +12,39 @@ const ExchangeRateTable = ({
   currency,
   rates,
 }: CurrencyRateProps) => (
-  <Table>
-    <Table.Head>
-      <Table.HeadCell className="w-1/4">
-        Name
-      </Table.HeadCell>
-      <Table.HeadCell className="w-1/4">
-        Symbol
-      </Table.HeadCell>
-      <Table.HeadCell className="w-1/2">
-        Exchange Rate ({currency})
-      </Table.HeadCell>
-    </Table.Head>
-    <Table.Body className="divide-y">
-      {rates && TOP_CRYPTO_CURRENCIES.map(([symbol, name]) => (
-        <Table.Row
-          className="bg-white dark:border-gray-700 dark:bg-gray-800"
-          key={`rate-${symbol}`}
-        >
-          <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-            {name}
-          </Table.Cell>
-          <Table.Cell>
-            {symbol}
-          </Table.Cell>
-          <Table.Cell>
-            ${formatRate(rates?.[symbol])}
-          </Table.Cell>
-        </Table.Row>
-      ))}
-    </Table.Body>
-  </Table>
+  <div className="relative overflow-x-auto">
+    <Table>
+      <Table.Head>
+        <Table.HeadCell className="w-1/4">
+          Name
+        </Table.HeadCell>
+        <Table.HeadCell className="w-1/4">
+          Symbol
+        </Table.HeadCell>
+        <Table.HeadCell className="w-1/2">
+          Exchange Rate ({currency})
+        </Table.HeadCell>
+      </Table.Head>
+      <Table.Body className="divide-y">
+        {rates && TOP_CRYPTO_CURRENCIES.map(([symbol, name]) => (
+          <Table.Row
+            className="bg-white dark:border-gray-700 dark:bg-gray-800"
+            key={`rate-${symbol}`}
+          >
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+              {name}
+            </Table.Cell>
+            <Table.Cell>
+              {symbol}
+            </Table.Cell>
+            <Table.Cell>
+              ${formatRate(rates?.[symbol])}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  </div>
 )
 
 export default ExchangeRateTable
