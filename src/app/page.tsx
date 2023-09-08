@@ -9,7 +9,7 @@ const Home = () => (
     </p>
 
     <p className="mb-4">
-      Simply enter the amount you want to invest, select the cryptocurrencies, and we'll calculate the ideal allocation percentage for each one.
+      Simply enter the amount you want to invest, select the cryptocurrencies and allocation amounts, and we'll calculate the number of shares for each one.
     </p>
 
     <p className="mb-4">
