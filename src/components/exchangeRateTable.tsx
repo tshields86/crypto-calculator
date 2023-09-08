@@ -37,7 +37,7 @@ const ExchangeRateTable = ({
             {symbol}
           </Table.Cell>
           <Table.Cell>
-            ${formatRate(rates?.[symbol])}
+            {formatRate(rates?.[symbol])}
           </Table.Cell>
         </Table.Row>
       ))}
