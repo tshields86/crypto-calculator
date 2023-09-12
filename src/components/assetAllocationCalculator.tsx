@@ -24,6 +24,9 @@ export default function AssetAllocationCalculator({
   const totalAllocationAmount = [...allocationByCrypto]
     .reduce((sum, [, allocationAmount]) => sum + (Number(allocationAmount) || 0), 0)
 
+  const cryptoDropdownItems = TOP_CRYPTO_CURRENCIES
+    .filter(([symbol]) => !allocationByCrypto.has(symbol))
+
   const investmentAmountInput = (
     <>
       <Label
@@ -101,7 +104,7 @@ export default function AssetAllocationCalculator({
                     inline
                     label={symbol}
                   >
-                    {TOP_CRYPTO_CURRENCIES.map(([dropdownSymbol, name]) => (
+                    {cryptoDropdownItems.map(([dropdownSymbol, name]) => (
                       <Dropdown.Item
                         key={`crypto-${dropdownSymbol}`}
                         onClick={() => setAllocationByCrypto((prev: AllocationByCrypto) => {
